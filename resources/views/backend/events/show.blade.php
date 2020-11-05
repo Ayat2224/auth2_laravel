@@ -1,0 +1,108 @@
+@extends('layouts.app_admin')
+@section('title','Show Events')
+@section('content')
+ 
+        
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          @if (session('sucessMSG'))
+            <div class="alert alert-success">
+                {{ session('sucessMSG') }}
+            </div>
+          @endif
+
+
+         {{--  @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+          @endif --}}
+
+
+          <form action="{{ url('admin/events') }}/{{ $objEvent->id }}" method="post" enctype="multipart/form-data">
+                @method('patch')
+                @csrf                
+
+                <div class="form-group">
+                  <label for="topics">Topics</label>
+                  <input type="text" class="form-control @error('topics') is-invalid @enderror" id="topics" name="topics"  placeholder="Enter topics" value="{{ $objEvent->topics }} " readonly>
+
+                  @error('topics')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                   
+                </div>
+
+                <div class="form-group">
+                  <label for="description">Description</label>
+                  <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description" readonly>{{ $objEvent->description }}</textarea>
+
+                  @error('description')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+
+                <div class="form-group">
+                  <label for="source_title">Source Title</label>
+                  <input type="text" class="form-control @error('source_title') is-invalid @enderror" id="source_title" name="source_title"  placeholder="Enter source_title" value="{{ $objEvent->source_title }}" readonly>
+
+                  @error('source_title')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="source_title_writer">Source Title Writer</label>
+                  <input type="text" class="form-control @error('source_title_writer') is-invalid @enderror" id="source_title_writer" name="source_title_writer"  placeholder="Enter source_title_writer" value="{{$objEvent->source_title_writer }}" readonly>
+
+                  @error('source_title_writer')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="host">Host</label>
+                  <input type="text" class="form-control @error('host') is-invalid @enderror" id="host" name="host"  placeholder="Enter host" value="{{ $objEvent->host }}" readonly>
+
+                  @error('host')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input type="text" class="form-control @error('location') is-invalid @enderror" id="location" name="location"  placeholder="Enter location" value="{{  $objEvent->location }}" readonly>
+
+                  @error('location')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="website">Website</label>
+                  <input type="url" class="form-control @error('website') is-invalid @enderror" id="website" name="website"  placeholder="Enter website" value="{{  $objEvent->website }}" readonly>
+
+                  @error('website')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="start_date">Start Date</label>
+                  <input type="datetime-local" class="form-control @error('start_date') is-invalid @enderror" id="start_date" name="start_date"  placeholder="Enter start_date" value="{{ $objEvent->start_date}}" readonly>
+
+                  @error('start_date')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>
+                <div class="form-group">
+                  <label for="end_date">End Date</label>
+                  <input type="datetime-local" class="form-control @error('end_date') is-invalid @enderror" id="end_date" name="end_date"  placeholder="Enter end_date" value="{{ $objEvent->end_date }}" readonly>
+
+                  @error('end_date')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
+                </div>                 
+                
+             
+             </form>
+        </main>
+@endsection
